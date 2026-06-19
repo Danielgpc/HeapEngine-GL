@@ -1,0 +1,13 @@
+CompileFlags:
+  Add:
+    - -Iengine
+    - -Ithird_party/glad/include
+    - -Ithird_party/glfw/include
+  Remove:
+    - -W*
+If:
+  PathMatch:
+    - engine/**
+    - game/**
+    - third_party/glad/**
+    - third_party/glfw/**

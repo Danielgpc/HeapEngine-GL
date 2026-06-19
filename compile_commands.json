@@ -8,7 +8,8 @@
       "-Wextra",
       "-O2",
       "-Iengine",
-      "-Ithird_party",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
       "-c",
       "engine/engine.cpp",
       "-o",
@@ -26,7 +27,8 @@
       "-Wextra",
       "-O2",
       "-Iengine",
-      "-Ithird_party",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
       "-c",
       "game/main.cpp",
       "-o",
@@ -34,5 +36,743 @@
     ],
     "directory": "/Users/danielgp/Projects/HeapEngine-GL",
     "output": "bin/game_main.o"
+  },
+  {
+    "file": "third_party/glad/src/glad.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glad/src/glad.c",
+      "-o",
+      "bin/glad.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glad.o"
+  },
+  {
+    "file": "third_party/glfw/src/cocoa_time.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/cocoa_time.c",
+      "-o",
+      "bin/glfw_cocoa_time.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_cocoa_time.o"
+  },
+  {
+    "file": "third_party/glfw/src/context.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/context.c",
+      "-o",
+      "bin/glfw_context.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_context.o"
+  },
+  {
+    "file": "third_party/glfw/src/egl_context.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/egl_context.c",
+      "-o",
+      "bin/glfw_egl_context.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_egl_context.o"
+  },
+  {
+    "file": "third_party/glfw/src/glx_context.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/glx_context.c",
+      "-o",
+      "bin/glfw_glx_context.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_glx_context.o"
+  },
+  {
+    "file": "third_party/glfw/src/init.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/init.c",
+      "-o",
+      "bin/glfw_init.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_init.o"
+  },
+  {
+    "file": "third_party/glfw/src/input.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/input.c",
+      "-o",
+      "bin/glfw_input.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_input.o"
+  },
+  {
+    "file": "third_party/glfw/src/linux_joystick.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/linux_joystick.c",
+      "-o",
+      "bin/glfw_linux_joystick.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_linux_joystick.o"
+  },
+  {
+    "file": "third_party/glfw/src/monitor.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/monitor.c",
+      "-o",
+      "bin/glfw_monitor.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_monitor.o"
+  },
+  {
+    "file": "third_party/glfw/src/null_init.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/null_init.c",
+      "-o",
+      "bin/glfw_null_init.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_null_init.o"
+  },
+  {
+    "file": "third_party/glfw/src/null_joystick.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/null_joystick.c",
+      "-o",
+      "bin/glfw_null_joystick.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_null_joystick.o"
+  },
+  {
+    "file": "third_party/glfw/src/null_monitor.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/null_monitor.c",
+      "-o",
+      "bin/glfw_null_monitor.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_null_monitor.o"
+  },
+  {
+    "file": "third_party/glfw/src/null_window.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/null_window.c",
+      "-o",
+      "bin/glfw_null_window.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_null_window.o"
+  },
+  {
+    "file": "third_party/glfw/src/osmesa_context.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/osmesa_context.c",
+      "-o",
+      "bin/glfw_osmesa_context.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_osmesa_context.o"
+  },
+  {
+    "file": "third_party/glfw/src/platform.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/platform.c",
+      "-o",
+      "bin/glfw_platform.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_platform.o"
+  },
+  {
+    "file": "third_party/glfw/src/posix_module.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/posix_module.c",
+      "-o",
+      "bin/glfw_posix_module.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_posix_module.o"
+  },
+  {
+    "file": "third_party/glfw/src/posix_poll.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/posix_poll.c",
+      "-o",
+      "bin/glfw_posix_poll.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_posix_poll.o"
+  },
+  {
+    "file": "third_party/glfw/src/posix_thread.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/posix_thread.c",
+      "-o",
+      "bin/glfw_posix_thread.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_posix_thread.o"
+  },
+  {
+    "file": "third_party/glfw/src/posix_time.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/posix_time.c",
+      "-o",
+      "bin/glfw_posix_time.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_posix_time.o"
+  },
+  {
+    "file": "third_party/glfw/src/vulkan.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/vulkan.c",
+      "-o",
+      "bin/glfw_vulkan.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_vulkan.o"
+  },
+  {
+    "file": "third_party/glfw/src/wgl_context.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/wgl_context.c",
+      "-o",
+      "bin/glfw_wgl_context.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_wgl_context.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_init.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_init.c",
+      "-o",
+      "bin/glfw_win32_init.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_init.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_joystick.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_joystick.c",
+      "-o",
+      "bin/glfw_win32_joystick.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_joystick.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_module.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_module.c",
+      "-o",
+      "bin/glfw_win32_module.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_module.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_monitor.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_monitor.c",
+      "-o",
+      "bin/glfw_win32_monitor.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_monitor.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_thread.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_thread.c",
+      "-o",
+      "bin/glfw_win32_thread.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_thread.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_time.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_time.c",
+      "-o",
+      "bin/glfw_win32_time.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_time.o"
+  },
+  {
+    "file": "third_party/glfw/src/win32_window.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/win32_window.c",
+      "-o",
+      "bin/glfw_win32_window.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_win32_window.o"
+  },
+  {
+    "file": "third_party/glfw/src/window.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/window.c",
+      "-o",
+      "bin/glfw_window.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_window.o"
+  },
+  {
+    "file": "third_party/glfw/src/wl_init.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/wl_init.c",
+      "-o",
+      "bin/glfw_wl_init.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_wl_init.o"
+  },
+  {
+    "file": "third_party/glfw/src/wl_monitor.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/wl_monitor.c",
+      "-o",
+      "bin/glfw_wl_monitor.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_wl_monitor.o"
+  },
+  {
+    "file": "third_party/glfw/src/wl_window.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/wl_window.c",
+      "-o",
+      "bin/glfw_wl_window.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_wl_window.o"
+  },
+  {
+    "file": "third_party/glfw/src/x11_init.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/x11_init.c",
+      "-o",
+      "bin/glfw_x11_init.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_x11_init.o"
+  },
+  {
+    "file": "third_party/glfw/src/x11_monitor.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/x11_monitor.c",
+      "-o",
+      "bin/glfw_x11_monitor.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_x11_monitor.o"
+  },
+  {
+    "file": "third_party/glfw/src/x11_window.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/x11_window.c",
+      "-o",
+      "bin/glfw_x11_window.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_x11_window.o"
+  },
+  {
+    "file": "third_party/glfw/src/xkb_unicode.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/xkb_unicode.c",
+      "-o",
+      "bin/glfw_xkb_unicode.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_xkb_unicode.o"
+  },
+  {
+    "file": "third_party/glfw/src/cocoa_init.m",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/cocoa_init.m",
+      "-o",
+      "bin/glfw_cocoa_init.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_cocoa_init.o"
+  },
+  {
+    "file": "third_party/glfw/src/cocoa_joystick.m",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/cocoa_joystick.m",
+      "-o",
+      "bin/glfw_cocoa_joystick.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_cocoa_joystick.o"
+  },
+  {
+    "file": "third_party/glfw/src/cocoa_monitor.m",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/cocoa_monitor.m",
+      "-o",
+      "bin/glfw_cocoa_monitor.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_cocoa_monitor.o"
+  },
+  {
+    "file": "third_party/glfw/src/cocoa_window.m",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/cocoa_window.m",
+      "-o",
+      "bin/glfw_cocoa_window.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_cocoa_window.o"
+  },
+  {
+    "file": "third_party/glfw/src/nsgl_context.m",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-c",
+      "third_party/glfw/src/nsgl_context.m",
+      "-o",
+      "bin/glfw_nsgl_context.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/glfw_nsgl_context.o"
   }
 ]
