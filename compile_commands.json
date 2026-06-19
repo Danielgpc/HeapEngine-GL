@@ -1,0 +1,38 @@
+[
+  {
+    "file": "engine/engine.cpp",
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party",
+      "-c",
+      "engine/engine.cpp",
+      "-o",
+      "bin/engine_engine.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/engine_engine.o"
+  },
+  {
+    "file": "game/main.cpp",
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party",
+      "-c",
+      "game/main.cpp",
+      "-o",
+      "bin/game_main.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/game_main.o"
+  }
+]
