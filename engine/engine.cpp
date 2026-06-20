@@ -77,20 +77,31 @@ int Engine::init() {
   //> Initialize Opengl objects
   glGenBuffers(1, &VBO);
   glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &EBO);
   //< Initialize Opengl objects
 
   // Bind the Vertex Array Object first, then bind and set vertex buffer(s), and
   // then configure vertex attributes(s).
   glBindVertexArray(VAO);
 
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
   // Allocate vertices data to the GPU
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+  // Bind EBO and allocate indices data into it
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
+               GL_STATIC_DRAW);
 
   // Tell OpenGL how to interpret the vertex atribute data
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
   glEnableVertexAttribArray(0);
+
+  // You can unbind the VAO afterwards so other VAO calls won't accidentally
+  // modify this VAO, but this rarely happens. Modifying other VAOs requires a
+  // call to glBindVertexArray anyways so we generally don't unbind VAOs (nor
+  // VBOs) when it's not directly necessary.
+  glBindVertexArray(0);
 
   // Uncomment this call to draw in wireframe polygons.
   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -120,18 +131,22 @@ void Engine::render() {
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  // Draw fisrt triangle
+  // Draw fisrt rectangle
   glUseProgram(shaderProgram);
   glBindVertexArray(VAO);
-  glDrawArrays(GL_TRIANGLES, 0, 3);
+  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   // glBindVertexArray(0); no need to unbind everytime
 }
 
 int Engine::cleanup() {
-  glfwTerminate();
-  glDeleteVertexArrays(1, &VAO);
   glDeleteBuffers(1, &VBO);
+  glDeleteVertexArrays(1, &VAO);
   glDeleteProgram(shaderProgram);
+
+  if (window)
+    glfwDestroyWindow(window);
+  glfwTerminate();
+
   std::cout << "Engine cleaned up.\n";
   return 0;
 }
