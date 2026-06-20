@@ -11,18 +11,22 @@ public:
   int cleanup();
 
 private:
-  GLFWwindow *window;
+  GLFWwindow *window = nullptr;
 
-  unsigned int VBO, VAO, EBO;
-  unsigned int shaderProgram;
+  unsigned int VBO = 0;
+  unsigned int VAO = 0;
+  unsigned int EBO = 0;
+  unsigned int shaderProgram = 0;
 
   void render();
+  bool initWindow();
+  bool initShaders();
+  void initMesh();
 
   void processInput(GLFWwindow *window);
   static void framebuffer_size_callback(GLFWwindow *window, int width,
                                         int height);
 
-  // Load and compile shaders
   std::string loadShaderSource(const std::string &shaderPath);
   void compileShader(unsigned int shader, const char *shaderSource);
 };
