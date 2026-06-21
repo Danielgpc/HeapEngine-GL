@@ -1,4 +1,7 @@
 #include "engine.h"
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 #include "logger.h"
 
 int Engine::init() {
@@ -36,6 +39,16 @@ void Engine::render() {
   glUseProgram(shaderProgram);
   glBindVertexArray(VAO);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+  ImGui_ImplOpenGL3_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
+
+  ImGui::NewFrame();
+
+  ImGui::ShowDemoWindow();
+
+  ImGui::Render();
+  ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 int Engine::cleanup() {
@@ -43,11 +56,16 @@ int Engine::cleanup() {
   glDeleteVertexArrays(1, &VAO);
   glDeleteProgram(shaderProgram);
 
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
+
   if (window) {
     glfwDestroyWindow(window);
   }
 
   glfwTerminate();
+
   Logger::log(LogLevel::INFO, "Engine cleanup");
   return 0;
 }

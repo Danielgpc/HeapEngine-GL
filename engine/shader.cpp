@@ -1,5 +1,4 @@
 #include "engine.h"
-#include "shader.h"
 #include "defines.h"
 #include "logger.h"
 

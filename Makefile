@@ -4,7 +4,7 @@ CC ?= cc
 CXX ?= c++
 CFLAGS ?= -Wall -Wextra -O2
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -O2
-CPPFLAGS += -Iengine -Ithird_party/glad/include -Ithird_party/glfw/include
+CPPFLAGS += -Iengine -Ithird_party/glad/include -Ithird_party/glfw/include -Ithird_party/imgui -Ithird_party/imgui/backends
 ifeq ($(shell uname),Darwin)
 CPPFLAGS += -D_GLFW_COCOA
 endif
@@ -20,6 +20,11 @@ THIRD_PARTY_DIR := third_party
 ENGINE_LIB := $(LIB_DIR)/libengine.a
 GLAD_LIB := $(LIB_DIR)/libglad.a
 GLFW_LIB := $(LIB_DIR)/libglfw.a
+IMGUI_LIB := $(LIB_DIR)/libimgui.a
+
+IMGUI_SOURCES := $(wildcard $(THIRD_PARTY_DIR)/imgui/*.cpp) \
+                 $(THIRD_PARTY_DIR)/imgui/backends/imgui_impl_glfw.cpp \
+                 $(THIRD_PARTY_DIR)/imgui/backends/imgui_impl_opengl3.cpp
 
 ENGINE_OBJECTS := $(patsubst $(ENGINE_DIR)/%.cpp,$(BUILD_DIR)/engine_%.o,$(wildcard $(ENGINE_DIR)/*.cpp))
 GAME_OBJECTS := $(patsubst $(GAME_DIR)/%.cpp,$(BUILD_DIR)/game_%.o,$(wildcard $(GAME_DIR)/*.cpp))
@@ -27,6 +32,8 @@ GLAD_OBJECTS := $(BUILD_DIR)/glad.o
 GLFW_OBJECTS := $(patsubst $(THIRD_PARTY_DIR)/glfw/src/%.c,$(BUILD_DIR)/glfw_%.o,$(wildcard $(THIRD_PARTY_DIR)/glfw/src/*.c)) \
 	$(patsubst $(THIRD_PARTY_DIR)/glfw/src/%.m,$(BUILD_DIR)/glfw_%.o,$(wildcard $(THIRD_PARTY_DIR)/glfw/src/*.m))
 GAME_TARGET := $(BUILD_DIR)/engine_game
+IMGUI_OBJECTS := $(patsubst $(THIRD_PARTY_DIR)/imgui/%.cpp,$(BUILD_DIR)/imgui_%.o,$(wildcard $(THIRD_PARTY_DIR)/imgui/*.cpp)) \
+                 $(BUILD_DIR)/imgui_impl_glfw.o $(BUILD_DIR)/imgui_impl_opengl3.o
 
 ifeq ($(shell uname),Darwin)
 GLFW_LDLIBS := -framework Cocoa -framework OpenGL -framework IOKit -framework CoreFoundation
@@ -54,9 +61,9 @@ $(GLFW_LIB): $(GLFW_OBJECTS)
 	@mkdir -p $(LIB_DIR)
 	$(AR) $(ARFLAGS) $@ $^
 
-$(GAME_TARGET): $(GAME_OBJECTS) $(ENGINE_LIB) $(GLAD_LIB) $(GLFW_LIB)
+$(GAME_TARGET): $(GAME_OBJECTS) $(ENGINE_LIB) $(GLAD_LIB) $(GLFW_LIB) $(IMGUI_LIB)
 	@mkdir -p $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -o $@ $(GAME_OBJECTS) -L$(LIB_DIR) -lengine -lglad -lglfw $(GLFW_LDLIBS)
+	$(CXX) $(CXXFLAGS) -o $@ $(GAME_OBJECTS) -L$(LIB_DIR) -lengine -lglad -lglfw -limgui $(GLFW_LDLIBS)
 
 $(BUILD_DIR)/engine_%.o: $(ENGINE_DIR)/%.cpp
 	@mkdir -p $(dir $@)
@@ -77,6 +84,21 @@ $(BUILD_DIR)/glfw_%.o: $(THIRD_PARTY_DIR)/glfw/src/%.c
 $(BUILD_DIR)/glfw_%.o: $(THIRD_PARTY_DIR)/glfw/src/%.m
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+# Build the static library
+$(IMGUI_LIB): $(IMGUI_OBJECTS)
+	@mkdir -p $(LIB_DIR)
+	$(AR) $(ARFLAGS) $@ $^
+
+# Compile core ImGui files
+$(BUILD_DIR)/imgui_%.o: $(THIRD_PARTY_DIR)/imgui/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
+
+# Compile ImGui backend files
+$(BUILD_DIR)/imgui_impl_%.o: $(THIRD_PARTY_DIR)/imgui/backends/imgui_impl_%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
 run: all
 	./$(GAME_TARGET)

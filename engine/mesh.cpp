@@ -1,5 +1,4 @@
 #include "engine.h"
-#include "mesh.h"
 #include "defines.h"
 
 void Engine::initMesh() {
