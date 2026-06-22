@@ -34,6 +34,26 @@ int Engine::run() {
 }
 
 void Engine::render() {
+  // --- FPS Calculations ---
+  static double lastTime = glfwGetTime();
+  static int frameCount = 0;
+  static float fps = 0.0f;
+  static float frameTimeMs = 0.0f;
+
+  double currentTime = glfwGetTime();
+  frameCount++;
+
+  // Update FPS metrics every 0.5 seconds to make it readable
+  if (currentTime - lastTime >= 0.5) {
+    fps = static_cast<float>(frameCount) /
+          static_cast<float>(currentTime - lastTime);
+    frameTimeMs = 1000.0f / fps;
+
+    frameCount = 0;
+    lastTime = currentTime;
+  }
+  // -------------------------
+
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -44,13 +64,15 @@ void Engine::render() {
 
   ImGui_ImplOpenGL3_NewFrame();
   ImGui_ImplGlfw_NewFrame();
-
   ImGui::NewFrame();
 
-  ImGui::ShowDemoWindow();
+  // Custom Performance Overlay/Window
+  ImGui::Begin("Performance");
+  ImGui::Text("Application Average: %.1f FPS", fps);
+  ImGui::Text("Frame Time: %.3f ms", frameTimeMs);
+  ImGui::End();
 
   ImGui::Render();
-
   ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
