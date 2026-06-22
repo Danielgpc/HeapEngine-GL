@@ -1,4 +1,5 @@
 #include "engine.h"
+#include "GLFW/glfw3.h"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
@@ -37,8 +38,9 @@ void Engine::render() {
   glClear(GL_COLOR_BUFFER_BIT);
 
   glUseProgram(shaderProgram);
+
   glBindVertexArray(VAO);
-  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+  glDrawArrays(GL_TRIANGLES, 0, 3);
 
   ImGui_ImplOpenGL3_NewFrame();
   ImGui_ImplGlfw_NewFrame();
@@ -48,6 +50,7 @@ void Engine::render() {
   ImGui::ShowDemoWindow();
 
   ImGui::Render();
+
   ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
