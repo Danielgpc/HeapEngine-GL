@@ -7,7 +7,7 @@
 
 int Engine::init() {
   Logger::init();
-
+//Alguem passou por aqui
   if (!initWindow()) {
     return -1;
   }
