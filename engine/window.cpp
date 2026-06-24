@@ -1,17 +1,17 @@
-#include "engine.h"
-#include "defines.h"
+#include "window.h"
 #include "logger.h"
-
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-bool Engine::initWindow() {
+bool WindowManager::init(int width, int height, const char* title) {
+  // 1. Initialize the underlying windowing library (GLFW)
   if (!glfwInit()) {
     Logger::log(LogLevel::ERROR, "Failed to initialize GLFW");
     return false;
   }
 
+  // 2. Set up target OpenGL profile attributes (Core Profile 3.3)
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -19,24 +19,28 @@ bool Engine::initWindow() {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-  window = glfwCreateWindow(WIDTH, HEIGHT, "Heap engine gl window", nullptr,
-                            nullptr);
+  // 3. Allocate OS-level window resource  
+  window = glfwCreateWindow(width, height, title, nullptr, nullptr);
   if (window == nullptr) {
     Logger::log(LogLevel::ERROR, "Failed to create window");
     glfwTerminate();
     return false;
   }
 
+  // 4. Make this window's OpenGL context current on the calling thread
   glfwMakeContextCurrent(window);
 
+  // 5. Load function pointers for modern OpenGL using GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
     Logger::log(LogLevel::ERROR, "Failed to initialize GLAD");
     return false;
   }
 
-  glfwSetFramebufferSizeCallback(window, Engine::framebuffer_size_callback);
-  glViewport(0, 0, WIDTH, HEIGHT);
+  // 6. Register a static callback to adjust viewport dimensions when window resizes
+  glfwSetFramebufferSizeCallback(window, WindowManager::framebuffer_size_callback);
+  glViewport(0, 0, width, height);
 
+  // 7. Initialize ImGui bindings specifically linked to this window and OpenGL version
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
   ImGuiIO &io = ImGui::GetIO();
@@ -50,14 +54,24 @@ bool Engine::initWindow() {
   return true;
 }
 
-void Engine::processInput(GLFWwindow *window) {
+void WindowManager::processInput() {
   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
     glfwSetWindowShouldClose(window, true);
   }
 }
 
-void Engine::framebuffer_size_callback(GLFWwindow *window, int width,
-                                       int height) {
+void WindowManager::shutdown() {
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
+
+  if (window) {
+    glfwDestroyWindow(window);
+  }
+  glfwTerminate();
+}
+
+void WindowManager::framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   (void)window;
   glViewport(0, 0, width, height);
 }

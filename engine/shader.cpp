@@ -1,13 +1,10 @@
-#include "engine.h"
-#include "defines.h"
+#include "shader.h"
 #include "logger.h"
-
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <string>
 
-bool Engine::initShaders() {
+bool Shader::init() {
   std::string source = loadShaderSource("shaders/shader.vert");
   const char *vertexShaderSource = source.c_str();
   unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -38,7 +35,17 @@ bool Engine::initShaders() {
   return true;
 }
 
-std::string Engine::loadShaderSource(const std::string &shaderPath) {
+void Shader::use() const {
+  glUseProgram(shaderProgram);
+}
+
+void Shader::cleanup() {
+  if (shaderProgram != 0) {
+    glDeleteProgram(shaderProgram);
+  }
+}
+
+std::string Shader::loadShaderSource(const std::string &shaderPath) {
   std::ifstream file(shaderPath);
   if (!file.is_open()) {
     Logger::log(LogLevel::WARN, "Could not open shader at ", shaderPath);
@@ -50,7 +57,7 @@ std::string Engine::loadShaderSource(const std::string &shaderPath) {
   return buffer.str();
 }
 
-void Engine::compileShader(unsigned int shader, const char *shaderSource) {
+void Shader::compileShader(unsigned int shader, const char *shaderSource) {
   glShaderSource(shader, 1, &shaderSource, nullptr);
   glCompileShader(shader);
 

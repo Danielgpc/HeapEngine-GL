@@ -1,8 +1,8 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <string>
+#include "window.h"
+#include "shader.h"
+#include "mesh.h"
 
 class Engine {
 public:
@@ -11,22 +11,10 @@ public:
   int cleanup();
 
 private:
-  GLFWwindow *window = nullptr;
-
-  unsigned int VBO = 0;
-  unsigned int VAO = 0;
-  unsigned int EBO = 0;
-  unsigned int shaderProgram = 0;
+  // --- Composition: Engine owns instances of specialized classes ---
+  WindowManager windowManager; // Handles GLFW context, window creation, and input
+  Shader shader;               // Handles reading, compiling, and linking GLSL shaders
+  Mesh mesh;                   // Handles Vertex Buffer Objects (VBO) and Vertex Arrays (VAO)
 
   void render();
-  bool initWindow();
-  bool initShaders();
-  void initMesh();
-
-  void processInput(GLFWwindow *window);
-  static void framebuffer_size_callback(GLFWwindow *window, int width,
-                                        int height);
-
-  std::string loadShaderSource(const std::string &shaderPath);
-  void compileShader(unsigned int shader, const char *shaderSource);
 };
