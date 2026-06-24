@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "window.h"
 
 int Engine::init() {
   Logger::init();
@@ -18,7 +19,8 @@ int Engine::init() {
     return -1;
   }
 
-  // Delegation: Engine loads local triangle vertices directly into hardware VRAM
+  // Delegation: Engine loads local triangle vertices directly into hardware
+  // VRAM
   mesh.init();
 
   Logger::log(LogLevel::INFO, "Engine initialized");
@@ -27,13 +29,16 @@ int Engine::init() {
 
 int Engine::run() {
   // Extract handle to run window lifecycle checking loop
-  GLFWwindow* window = windowManager.getGLFWWindow();
-  
+  GLFWwindow *window = windowManager.getGLFWWindow();
+
+  texture = image.loadImage("assets/container.jpg");
+
   while (!glfwWindowShouldClose(window)) {
     windowManager.processInput(); // Check for key bindings (e.g. ESC key)
     render();                     // Draw current scene graphics
-    glfwSwapBuffers(window);      // Swap front & back display buffers (avoids screen tearing)
-    glfwPollEvents();             // Handle window messages, resizing, OS interruptions
+    glfwSwapBuffers(
+        window); // Swap front & back display buffers (avoids screen tearing)
+    glfwPollEvents(); // Handle window messages, resizing, OS interruptions
   }
 
   return 0;
@@ -50,7 +55,8 @@ void Engine::render() {
   frameCount++;
 
   if (currentTime - lastTime >= 0.5) {
-    fps = static_cast<float>(frameCount) / static_cast<float>(currentTime - lastTime);
+    fps = static_cast<float>(frameCount) /
+          static_cast<float>(currentTime - lastTime);
     frameTimeMs = 1000.0f / fps;
     frameCount = 0;
     lastTime = currentTime;
@@ -60,6 +66,9 @@ void Engine::render() {
   // Clean back-buffer frame canvas color bits
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
+
+  // Bind the texture
+  glBindTexture(GL_TEXTURE_2D, texture);
 
   // Use the separated components together safely to draw graphics
   shader.use(); // 1. Set global GPU program state

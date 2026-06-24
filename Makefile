@@ -4,7 +4,7 @@ CC ?= cc
 CXX ?= c++
 CFLAGS ?= -Wall -Wextra -O2
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -O2
-CPPFLAGS += -Iengine -Ithird_party/glad/include -Ithird_party/glfw/include -Ithird_party/imgui -Ithird_party/imgui/backends
+CPPFLAGS += -Iengine -Ithird_party/glad/include -Ithird_party/glfw/include -Ithird_party/imgui -Ithird_party/imgui/backends -Ithird_party
 ifeq ($(shell uname),Darwin)
 CPPFLAGS += -D_GLFW_COCOA
 endif

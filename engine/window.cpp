@@ -4,7 +4,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
-bool WindowManager::init(int width, int height, const char* title) {
+bool WindowManager::init(int width, int height, const char *title) {
   // 1. Initialize the underlying windowing library (GLFW)
   if (!glfwInit()) {
     Logger::log(LogLevel::ERROR, "Failed to initialize GLFW");
@@ -19,7 +19,7 @@ bool WindowManager::init(int width, int height, const char* title) {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-  // 3. Allocate OS-level window resource  
+  // 3. Allocate OS-level window resource
   window = glfwCreateWindow(width, height, title, nullptr, nullptr);
   if (window == nullptr) {
     Logger::log(LogLevel::ERROR, "Failed to create window");
@@ -29,6 +29,7 @@ bool WindowManager::init(int width, int height, const char* title) {
 
   // 4. Make this window's OpenGL context current on the calling thread
   glfwMakeContextCurrent(window);
+  // glfwSwapInterval(0); // 0 turns off V-Sync, unlocking the frame rate
 
   // 5. Load function pointers for modern OpenGL using GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -36,11 +37,14 @@ bool WindowManager::init(int width, int height, const char* title) {
     return false;
   }
 
-  // 6. Register a static callback to adjust viewport dimensions when window resizes
-  glfwSetFramebufferSizeCallback(window, WindowManager::framebuffer_size_callback);
+  // 6. Register a static callback to adjust viewport dimensions when window
+  // resizes
+  glfwSetFramebufferSizeCallback(window,
+                                 WindowManager::framebuffer_size_callback);
   glViewport(0, 0, width, height);
 
-  // 7. Initialize ImGui bindings specifically linked to this window and OpenGL version
+  // 7. Initialize ImGui bindings specifically linked to this window and OpenGL
+  // version
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
   ImGuiIO &io = ImGui::GetIO();
@@ -71,7 +75,8 @@ void WindowManager::shutdown() {
   glfwTerminate();
 }
 
-void WindowManager::framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+void WindowManager::framebuffer_size_callback(GLFWwindow *window, int width,
+                                              int height) {
   (void)window;
   glViewport(0, 0, width, height);
 }
