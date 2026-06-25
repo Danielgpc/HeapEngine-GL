@@ -5,12 +5,20 @@
 
 class Shader {
 public:
-  bool init();
-  void use() const;
+  unsigned int ID;
+
+  Shader(const char *vertexPath, const char *fragmentPath);
+
+  void use() { glUseProgram(ID); }
+
+  void setBool(const std::string &name, bool value) const;
+
+  void setInt(const std::string &name, int value) const;
+
+  void setFloat(const std::string &name, float value) const;
+
   void cleanup();
 
 private:
-  unsigned int shaderProgram = 0;
-  std::string loadShaderSource(const std::string &shaderPath);
-  void compileShader(unsigned int shader, const char *shaderSource);
+  void checkCompileErrors(unsigned int shader, std::string type);
 };

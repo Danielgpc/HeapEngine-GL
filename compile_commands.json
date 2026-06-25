@@ -23,6 +23,29 @@
     "output": "bin/engine_engine.o"
   },
   {
+    "file": "engine/image.cpp",
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-O2",
+      "-Iengine",
+      "-Ithird_party/glad/include",
+      "-Ithird_party/glfw/include",
+      "-Ithird_party/imgui",
+      "-Ithird_party/imgui/backends",
+      "-Ithird_party",
+      "-D_GLFW_COCOA",
+      "-c",
+      "engine/image.cpp",
+      "-o",
+      "bin/engine_image.o"
+    ],
+    "directory": "/Users/danielgp/Projects/HeapEngine-GL",
+    "output": "bin/engine_image.o"
+  },
+  {
     "file": "engine/mesh.cpp",
     "arguments": [
       "/usr/bin/c++",
