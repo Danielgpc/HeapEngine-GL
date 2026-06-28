@@ -29,7 +29,7 @@ bool WindowManager::init(int width, int height, const char *title) {
 
   // 4. Make this window's OpenGL context current on the calling thread
   glfwMakeContextCurrent(window);
-  // glfwSwapInterval(0); // 0 turns off V-Sync, unlocking the frame rate
+  glfwSwapInterval(0); // 0 turns off V-Sync, unlocking the frame rate
 
   // 5. Load function pointers for modern OpenGL using GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {

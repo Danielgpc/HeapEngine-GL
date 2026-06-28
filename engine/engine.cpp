@@ -5,6 +5,10 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 int Engine::init() {
   Logger::init();
 
@@ -16,7 +20,7 @@ int Engine::init() {
   return 0;
 }
 
-int Engine::run(Application* app) {
+int Engine::run(Application *app) {
   GLFWwindow *window = windowManager.getGLFWWindow();
 
   app->onInit();
@@ -37,14 +41,15 @@ int Engine::run(Application* app) {
     // --- Active FPS Calculations ---
     frameCount++;
     if (currentTime - fpsLastTime >= 0.5) {
-      currentFps = static_cast<float>(frameCount) / static_cast<float>(currentTime - fpsLastTime);
+      currentFps = static_cast<float>(frameCount) /
+                   static_cast<float>(currentTime - fpsLastTime);
       currentFrameTimeMs = 1000.0f / currentFps;
       frameCount = 0;
       fpsLastTime = currentTime;
     }
 
     // Process window inputs
-    windowManager.processInput(); 
+    windowManager.processInput();
     app->onUpdate(deltaTime);
 
     // Render clear operations
@@ -63,8 +68,8 @@ int Engine::run(Application* app) {
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    glfwSwapBuffers(window); 
-    glfwPollEvents(); 
+    glfwSwapBuffers(window);
+    glfwPollEvents();
   }
 
   app->onShutdown();
