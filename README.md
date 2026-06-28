@@ -1,49 +1,47 @@
 # HeapEngine-GL
 
-A small C++ game engine template with a separate engine/game layout and a simple hello-world example.
+**HeapEngine-GL** is a lightweight, from-scratch C++ OpenGL 4.x game engine (currently targeting 3.3 core for broad compatibility) built by a 14-year-old solo dev. The goal is a clean, modular foundation for a large-scale low-poly 3D open-world game (GTA 5 / RDR 2) with Far Cry 3 inspired/CS:S graphics.
 
-## Project Structure
+### Current Features
+
+- GLFW + GLAD windowing and OpenGL context management
+- Custom Shader class with file loading and uniform helpers
+- Mesh class with VBO/VAO/EBO support (textured quad example)
+- Texture loading via STB (ImageHandler) with mipmaps
+- Multi-texture blending (container + awesomeface classic)
+- ImGui integration for runtime performance overlay (FPS, frame time)
+- Clean engine/game separation via Application interface
+- Logging system with colors and timestamps
+- Makefile-based build system with static libs
+
+**Current demo**: Renders a textured quad with color + UV attributes, blending two textures, and live performance stats.
+
+### Project Structure (current)
+
+text
 
 ```
 HeapEngine-GL/
-├── engine/            # Engine code
-│   ├── hello_engine.h
-│   └── hello_engine.cpp
-├── game/              # Game entry point
-│   └── main.cpp
-├── third_party/       # Third-party or vendored dependencies
-│   └── README.md
+├── engine/            # Core engine code (WindowManager, Engine, etc.)
+├── game/              # SandboxGame + main.cpp
+├── shaders/           # GLSL shaders
+├── assets/            # Textures (container.jpg, awesomeface.png)
+├── third_party/       # GLAD, GLFW, ImGui, stb_image
 ├── bin/               # Build output
-├── lib/               # Static library output
-└── Makefile           # Build system
+├── lib/               # Static libraries
+├── Makefile
+├── TODO.md
+└── README.md
 ```
 
-## Build System
+### Build & Run
 
-This project uses `make` with C++.
+Bash
 
-### Build commands
-
-```bash
-make all
-make engine
-make game
-make run
+```
+make all      # Build engine + game
+make run      # Build and execute
 make clean
 ```
 
-## How it works
-
-- The engine code lives under [engine](engine).
-- The game entry point lives under [game](game).
-- The engine exposes a class with `init()`, `run()`, and `cleanup()` methods.
-- The example prints a simple hello-world message when run.
-
-## Running
-
-```bash
-make run
-```
-
-The resulting executable will be created in `bin/hello_game`.
-
+The executable lands in bin/engine_game.
