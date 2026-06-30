@@ -4,3 +4,6 @@ lib/
 .DS_Store/
 imgui.ini
 compile_commands.json
+.clangd
+.clang-format
+.DS_Store

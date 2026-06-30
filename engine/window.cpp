@@ -50,8 +50,12 @@ bool WindowManager::init(int width, int height, const char *title) {
   ImGuiIO &io = ImGui::GetIO();
   (void)io;
   io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+  io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
   ImGui::StyleColorsDark();
+  ImGuiStyle &style = ImGui::GetStyle();
+  style.WindowRounding = 0.0f;
+  style.Colors[ImGuiCol_DockingPreview] = ImVec4(0.2f, 0.6f, 1.0f, 0.8f);
 
   ImGui_ImplGlfw_InitForOpenGL(window, true);
   ImGui_ImplOpenGL3_Init("#version 330");
