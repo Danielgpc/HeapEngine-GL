@@ -22,14 +22,16 @@ text
 
 ```
 HeapEngine-GL/
-├── engine/            # Core engine code (WindowManager, Engine, etc.)
-├── game/              # SandboxGame + main.cpp
+├── engine/
+│   ├── src/           # Engine sources (.cc)
+│   ├── *.h            # Engine headers (Application interface, Shader, Mesh...)
+│   └── third_party/   # GLAD, GLFW, GLM, ImGui (docking), stb_image
+├── game/
+│   └── src/           # SandboxGame + main.cc
 ├── shaders/           # GLSL shaders
 ├── assets/            # Textures (container.jpg, awesomeface.png)
-├── third_party/       # GLAD, GLFW, ImGui, stb_image
-├── bin/               # Build output
-├── lib/               # Static libraries
-├── Makefile
+├── build/             # Build output (objects, libs, executable)
+├── Makefile           # Top-level: delegates to engine/ and game/
 ├── TODO.md
 └── README.md
 ```
@@ -44,4 +46,4 @@ make run      # Build and execute
 make clean
 ```
 
-The executable lands in bin/engine_game.
+The executable lands in build/game/voidscan.

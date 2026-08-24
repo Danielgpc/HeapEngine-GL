@@ -1,9 +1,12 @@
+# Build output
 bin/
+build/
 lib/
 .cache/
-.DS_Store/
+
+# OS junk
+.DS_Store
+
+# Editor / tooling artifacts
 imgui.ini
 compile_commands.json
-.clangd
-.clang-format
-.DS_Store
